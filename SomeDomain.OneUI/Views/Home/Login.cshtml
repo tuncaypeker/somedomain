@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" style="padding:0;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Giriş Yap - Yönetim Paneli</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/_assets/css/icomoon.css" rel="stylesheet" type="text/css">
+    <link href="~/_assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/_assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+    <link href="~/_assets/css/layout.min.css" rel="stylesheet" type="text/css">
+    <link href="~/_assets/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="~/_assets/css/colors.min.css" rel="stylesheet" type="text/css">
+    <link href="~/_assets/css/style.css" rel="stylesheet" type="text/css">
+    <script src="~/_assets/js/jquery.min.js"></script>
+    <script src="~/_assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/_assets/js/blockui.min.js"></script>
+    <script src="~/_assets/js/uniform.min.js"></script>
+</head>
+
+<body class="operation-bg">
+
+    
+
+    <div class="page-content">
+        <div class="content-wrapper">
+            <div class="content d-flex justify-content-center align-items-center p-0">
+                <form class="login-form" action="/Home/Login" method="post">
+                    <div class="card mb-0">
+                        <div class="card-body">
+
+                            @if (ViewBag.Errors != null)
+                            {
+                                <div class="card-header bg-danger">
+                                    <div class="alertBox">
+                                        <ul class="m-0">
+                                            @foreach (var item in ViewBag.Errors)
+                                            {
+                                                <li>@item</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="text-center mb-3">
+                                <i class="icon-people icon-2x text-warning-400 border-warning-400 border-3 rounded-round p-3 mb-3 mt-1"></i>
+                                <h5 class="mb-0">Giriş Yap</h5>
+                            </div>
+
+                            <div class="form-group form-group-feedback form-group-feedback-left">
+                                <input type="text" class="form-control" name="username" value="" placeholder="Kullanıcı Adı">
+                                <div class="form-control-feedback">
+                                    <i class="icon-person text-muted"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-feedback form-group-feedback-left">
+                                <input type="password" class="form-control" name="password" placeholder="Şifre">
+                                <div class="form-control-feedback">
+                                    <i class="icon-lock2 text-muted"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="hidden" name="url" value="@ViewBag.Url" />
+                                <button type="submit" class="btn btn-primary btn-block">Giriş Yap <i class="icon-circle-right2 ml-2"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

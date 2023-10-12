@@ -1,0 +1,75 @@
+﻿@model SomeDomain.Data.Entities.Domain
+@{ 
+    ViewBag.Title = "Domain Ekle";
+}
+<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+    <div class="d-flex">
+        <div class="breadcrumb">
+            <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Dashboard</a>
+            <a href="@Url.Action("Index","Domain")" class="breadcrumb-item">Domainler</a>
+            <span class="breadcrumb-item active">Yeni Domain</span>
+        </div>
+    </div>
+    <div class="header-elements d-none">
+        <div class="breadcrumb justify-content-center">
+            <a href="@Url.Action("Index","Domain")" class="btn btn-primary">Listeye Dön</a>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class='card'>
+        <div class='card-body'>
+            @Html.Raw(ViewResultHelperExtension.ViewResult(ViewBag.Result))
+            <form action="/Domain/Add/" class="form-horizontal" enctype="multipart/form-data" method="post">
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Domain Adı</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="Name" value="@Model.Name" class="form-control" placeholder="domain.com">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Buy Now</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="BuyNow" value="@Model.BuyNow" class="form-control" placeholder="1000">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Min Offer</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="MinOffer" value="@Model.MinOffer" class="form-control" placeholder="1000">
+                    </div>
+                </div>
+               
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Registry</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="Registry" value="@Model.Registry" class="form-control" placeholder="Godaddy">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Expire Date</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="ExpireDate" value="@Model.ExpireDate.ToShortDateString()" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Açıklama</label>
+                    <div class="col-lg-10">
+                        <textarea name="Description" class="form-control" rows="10">@Model.Description</textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Açıklama [TR]</label>
+                    <div class="col-lg-10">
+                        <textarea name="DescriptionTR" class="form-control" rows="10">@Model.DescriptionTR</textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btn-success">Ekle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

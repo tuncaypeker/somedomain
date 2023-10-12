@@ -1,0 +1,80 @@
+﻿@model List<SomeDomain.Data.Entities.DomainOffer>
+@{
+	ViewBag.Title = $"Domain Teklifleri";
+}
+<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+	<div class="d-flex">
+		<div class="breadcrumb">
+			<a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Dashboard</a>
+			<a href="@Url.Action("Index","Domain")" class="breadcrumb-item">Domainler</a>
+			<span class="breadcrumb-item">Okunmayan Teklifler</span>
+		</div>
+	</div>
+
+	<div class="header-elements d-none">
+		<div class="breadcrumb justify-content-center">
+		</div>
+	</div>
+</div>
+
+<div class="content">
+	<div class="card p-3">
+		<div class="table-responsive pt-3">
+			<table id="tblGrid" class="table table-striped dt-responsive table-hover">
+				<thead>
+					<tr class="bg-dark">
+						<td style="width:10px;">.</td>
+						<td>CreateDate</td>
+						<td>Name</td>
+						<td>Offer</td>
+						<td>Email</td>
+						<td>Domain</td>
+						<td style="width:20px;"><i class="icon-trash"></i></td>
+						<td style="width:20px;"><i class="icon-check"></i></td>
+					</tr>
+				</thead>
+				@{ int counter = 0; }
+				@foreach (var ad in Model)
+				{
+					counter += 1;
+
+					<tr style="background-color: @Html.Raw(ad.HasSeen ? "": "#d0e9d0")">
+						<td>@counter</td>
+						<td>@ad.CreateDate</td>
+						<td>@ad.Name</td>
+						<td>@ad.Offer</td>
+						<td>@ad.Email</td>
+						<td><a href="@Url.Action("Offers", "Domain", new { id = ad.DomainId })" target="_blank">@ad.DomainId</a></td>
+						<td>
+							<a href="@Url.Action("OfferDelete","Domain", new { id = ad.Id })" onclick="return confirm('!')"><i class="icon-trash"></i></a>
+						</td>
+						<td>
+							<a href="javascript:" class="btnCheck" data-id="@ad.Id"><i class="icon-check"></i></a>
+						</td>
+					</tr>
+				}
+			</table>
+		</div>
+	</div>
+</div>
+@section scripts
+{
+	<script>
+		$("document").ready(function(){
+			$(".btnCheck").click(function(){
+				var dataId = $(this).attr("data-id");
+
+				var data = { id: dataId };
+				$.ajax({
+					url: '@Url.Action("OfferCheckAsSeen", "Domain")',
+					type: "post",
+					contentType: 'application/x-www-form-urlencoded',
+					data: data,
+					success: function (result) {
+						alert(result.result);
+					}
+				});
+			});
+		})
+	</script>
+}

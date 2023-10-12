@@ -1,0 +1,70 @@
+﻿@model List<SomeDomain.Data.Entities.Domain>
+@{
+	ViewBag.Title = "Domainler";
+}
+<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+	<div class="d-flex">
+		<div class="breadcrumb">
+			<a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Dashboard</a>
+			<span class="breadcrumb-item active">Domainler</span>
+		</div>
+	</div>
+
+	<div class="header-elements d-none">
+		<div class="breadcrumb justify-content-center">
+			<a href="@Url.Action("Add","Domain")" class="btn btn-primary">Yeni Ekle</a>
+		</div>
+	</div>
+</div>
+
+<div class="content">
+	<div class="card">
+		@{
+			var notSeenOfferCount = (int)ViewBag.NotReadOffersCount;
+			if (notSeenOfferCount > 0)
+			{
+				<div class="alert alert-warning m-3">
+					<a href="@Url.Action("OffersNotSeen","Domain")">Görmediğimiz teklif sayısı: @notSeenOfferCount</a>
+				</div>
+			}
+		}
+
+		<div class="table-responsive p-3">
+			<table id="tblGrid" class="table table-striped dt-responsive table-hover">
+				<thead>
+					<tr class="bg-dark">
+						<td style="width:20px">Name</td>
+						<td style="width:20px">Hit</td>
+						<td>Açıklama</td>
+						<td>BuyNow</td>
+						<td>MinOffer</td>
+						<td>Registry</td>
+						<td>Expire</td>
+						<td style="width:20px;"><i class="icon-pen"></i></td>
+						<td style="width:20px;"><i class="icon-trash"></i></td>
+						<td style="width:20px;">Offers</td>
+					</tr>
+				</thead>
+				@foreach (var ad in Model)
+				{
+					<tr>
+						<td>@ad.Name</td>
+						<td>@ad.Hit</td>
+						<td>@ad.Description</td>
+						<td>@ad.BuyNow</td>
+						<td>@ad.MinOffer</td>
+						<td>@ad.Registry</td>
+						<td>@ad.ExpireDate.ToShortDateString()</td>
+						<td><a href="@Url.Action("Edit","Domain", new { id = ad.Id })"><i class="icon-pen"></i></a></td>
+						<td>
+							<a href="@Url.Action("Delete","Domain", new { id = ad.Id })" onclick="return confirm('!')"><i class="icon-trash"></i></a>
+						</td>
+						<td>
+							<a href="@Url.Action("Offers","Domain", new { id = ad.Id })">Offers</a>
+						</td>
+					</tr>
+				}
+			</table>
+		</div>
+	</div>
+</div>

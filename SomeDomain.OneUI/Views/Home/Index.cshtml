@@ -1,0 +1,114 @@
+﻿@model SomeDomain.Data.Entities.Domain
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index">
+    <meta name="keywords" content=" ">
+    <meta name="description" content=" ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@Model.Name is for sale. Make your offer!</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--  Favicon Icon  -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RB48J0FQT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-9RB48J0FQT');
+    </script>
+</head>
+<body class="light">
+    <!-- Body start -->
+    <header class="hero-1 position-relative fullscreen">
+        <div class="home-center">
+            <div class="home-center-desc">
+                <div class="container fullscreen">
+                    <div class="row justify-vertical fullscreen">
+                        <div class="col-12 col-md-12 col-lg-8 py-5 py-lg-0 px-lg-0">
+                            <div class="sale-item opa">
+                                <h4 class="sale d-inline-block">This domain is for sale!</h4>
+                                <h1 class="head py-3">@Model.Name</h1>
+                                <h4>Please make an offer!</h4>
+                                <span>Buy Now: <b class="font-weight-bold">$ @Model.BuyNow</b></span>
+                                <p class="py-1 text-black-50 pr-md-2">
+                                    @Model.Description
+                                </p>
+                            </div>
+                            <ul class="list-unstyled d-inline-block m-0">
+                                <li class="d-inline-block mr-lg-5">
+                                    <i class="fas fa-phone ml-2 mr-2"></i><a class="text-muted" href="https://www.afternic.com/domain/@Model.Name" target="_blank">Afternic</a>
+                                </li>
+                                <li class="d-inline-block mr-lg-5">
+                                    <i class="fas fa-phone ml-2 mr-2"></i><a class="text-muted" href="https://dan.com/buy-domain/@Model.Name" target="_blank">Dan.Com</a>
+                                </li>
+                                <li class="d-inline-block"><i class="fas fa-envelope ml-2 mr-2"></i>
+                                    <a class="text-muted" href="mail:somedomain@hotmail.com">
+                                       somedomain@hotmail.com</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-4 my-md-4 my-lg-0">
+                            <div class="sale-form bg-color2 py-5 px-3 rounded">
+                                <h2 class="text-center space">Make Your Offer</h2>
+                                <p class="text-muted font-weight-normal text-center mb-4">
+                                    Please fill the form side and the we will receive your message.
+                                </p>
+                                <div class="custom-form px-1">
+                                    <form action="@Url.Action("Offer","Home")" method="POST" class="contact-form" name="contact-form" id="contact-form">
+                                        <div class="form-row">
+                                            <div class="col-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <input type="text" name="name" id="name" class="form-control"
+                                                           autocomplete="off" placeholder="Your name..." required>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <input type="email" name="email" id="email" class="form-control"
+                                                           autocomplete="off" placeholder="Your email..." required>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <input type="text" name="offer" id="offer" class="form-control"
+                                                           autocomplete="off" placeholder="Enter your offer..." required value="@Model.MinOffer"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12">
+                                                <button id="btn_submit"
+                                                        class="btn w-100 shadow text-uppercase mt-3 mb-4 mb-lg-0"
+                                                        type="submit">
+                                                    Make Offer
+                                                </button>
+                                                <input type="hidden" name="domainId" value="@Model.Id" />
+                                            </div>
+                                            <div class="form-message" style="margin: 15px 10px; color: red;font-size: 13px;"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
